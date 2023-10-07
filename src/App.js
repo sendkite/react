@@ -11,7 +11,12 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    const nextSquares = squares.slice();
+    /*
+    * 원본 데이터 불변하게 유지하면 좋은 점
+    * 1. 특정 동작 실행 취소, 재실행 같은 동작을 쉽게 구현할 수 있음
+    * 2. 컴포턴트가 데이터 변경 감지하고 재렌더링 시점 파악하기 쉬움
+    * */
+    const nextSquares = squares.slice(); // immutability is important
     nextSquares[i] = 'X';
     setSquares(nextSquares);
   }
